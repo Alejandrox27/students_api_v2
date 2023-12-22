@@ -15,6 +15,7 @@ formulario.addEventListener("submit", (e) => {
     if (opcion === "Estudiante"){
         const estudiante = new Estudiante(nombre, edad)
         estudiantes.push(estudiante);
+        Persona.pintarPersonaUI(estudiantes, opcion)
     }
 
     if (opcion === "Profesor"){
