@@ -5,6 +5,7 @@ const templateTeacher = document.getElementById("templateTeacher").content;
 const cardsStudents = document.getElementById("cardsStudents");
 const cardsTeachers = document.getElementById("cardsTeachers");
 const students = [];
+const teachers = [];
 
 form.addEventListener("submit", (e) => {
     e.preventDefault();
@@ -13,13 +14,16 @@ form.addEventListener("submit", (e) => {
     const [name, age, option] = [...data.values()]
 
     if (option === "Student"){
-        const student = new Student(name, age)
+        const student = new Student(name, age);
         students.push(student);
-        Person.showPersonUI(students, option)
+        Person.showPersonUI(students, option);
     }
 
     if (option === "Teacher"){
-        console.log("Teacher")
+        const teacher = new Teacher(name, age);
+        teachers.push(teacher);
+        Person.showPersonUI(teachers, option)
+
     }
 
 }, false);
@@ -66,5 +70,14 @@ class Student extends Person {
 }
 
 class Teacher extends Person{
+    #teacher = "Teacher";
 
+    addNewTeacher(){
+        const clone = templateTeacher.firstElementChild.cloneNode(true);
+        clone.querySelector("h5").textContent = this.name;
+        clone.querySelector("h6").textContent = this.#teacher;
+        clone.querySelector(".lead").textContent = this.age;
+
+        return clone;
+    }
 }
