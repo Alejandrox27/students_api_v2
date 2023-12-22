@@ -1,70 +1,70 @@
-const formulario = document.getElementById("formulario");
-const templateEstudiante = document.getElementById("templateEstudiante").content;
-const templateProfesor = document.getElementById("templateProfesor").content;
+const form = document.getElementById("form");
+const templateStudent = document.getElementById("templateStudent").content;
+const templateTeacher = document.getElementById("templateTeacher").content;
 
-const cardsEstudiantes = document.getElementById("cardsEstudiantes");
-const cardsProfesores = document.getElementById("cardsProfesores");
-const estudiantes = [];
+const cardsStudents = document.getElementById("cardsStudents");
+const cardsTeachers = document.getElementById("cardsTeachers");
+const students = [];
 
-formulario.addEventListener("submit", (e) => {
+form.addEventListener("submit", (e) => {
     e.preventDefault();
 
-    const datos = new FormData(formulario);
-    const [nombre, edad, opcion] = [...datos.values()]
+    const data = new FormData(form);
+    const [name, age, option] = [...data.values()]
 
-    if (opcion === "Estudiante"){
-        const estudiante = new Estudiante(nombre, edad)
-        estudiantes.push(estudiante);
-        Persona.pintarPersonaUI(estudiantes, opcion)
+    if (option === "Student"){
+        const student = new Student(name, age)
+        students.push(student);
+        Person.showPersonUI(students, option)
     }
 
-    if (opcion === "Profesor"){
-        console.log("Profesor")
+    if (option === "Teacher"){
+        console.log("Teacher")
     }
 
 }, false);
 
-class Persona{
-    constructor(nombre, edad){
-        this.nombre = nombre;
-        this.edad = edad;
+class Person{
+    constructor(name, age){
+        this.name = name;
+        this.age = age;
     }
 
-    static pintarPersonaUI(personas, tipo){
-        if(tipo === "Estudiante"){
+    static showPersonUI(persons, tipe){
+        if(tipe === "Student"){
 
-            cardsEstudiantes.textContent = "";
+            cardsStudents.textContent = "";
             const fragment = document.createDocumentFragment();
 
-            personas.forEach(item => {
-                fragment.appendChild(item.agregarNuevoEstudiante())
+            persons.forEach(item => {
+                fragment.appendChild(item.addNewStudent())
             });
 
-            cardsEstudiantes.appendChild(fragment);
+            cardsStudents.appendChild(fragment);
         }
     }
 }
 
-class Estudiante extends Persona {
-    #estado = false;
-    #estudiante = "Estudiante";
+class Student extends Person {
+    #status = false;
+    #student = "Student";
 
-    set setEstado(estado){
-        this.#estado = estado
+    set setStatus(status){
+        this.#status = status
     }
 
-    get getEstudiante(){
-        return this.#estudiante
+    get getStudent(){
+        return this.#student
     }
 
-    agregarNuevoEstudiante(){
-        const clone = templateEstudiante.firstElementChild.cloneNode(true);
-        clone.querySelector("h5 .text-primary").textContent = this.nombre;
+    addNewStudent(){
+        const clone = templateStudent.firstElementChild.cloneNode(true);
+        clone.querySelector("h5 .text-primary").textContent = this.name;
 
         return clone;
     }
 }
 
-class Profesor extends Persona{
+class Teacher extends Person{
 
 }

@@ -8,66 +8,66 @@
 </head>
 <body>
     <div class="container my-5">
-        <h1>estudiantes y profesores</h1>
-        <form id="formulario">
+        <h1>students and teachers</h1>
+        <form id="form">
             <input type="text" class="form-control mb-2"
-            name="nombre"
-            placeholder="Ingrese nombre"
+            name="name"
+            placeholder="Insert name"
             required
             />
 
             <input type="number" class="form-control mb-2"
-            name="edad"
-            placeholder="Ingrese edad"
+            name="age"
+            placeholder="Insert age"
             required
             />
 
             <select aria-label="Default select" class="form-select mb-2" name="opcion">
-                <option value="Estudiante" selected>Estudiante</option>
-                <option value="Profesor">Profesor</option>
+                <option value="Student" selected>Student</option>
+                <option value="Teacher">Teacher</option>
             </select>
 
-            <button class="btn btn-primary" type="submit">Agregar</button>
+            <button class="btn btn-primary" type="submit">Add</button>
         </form>
 
         <section class="row mt-3">
-            <div class="col-6" id="cardsEstudiantes">
+            <div class="col-6" id="cardsStudents">
                 
-                <!--Template estudiante card-->
+                <!--Template student card-->
 
             </div>
 
-            <div class="col-6" id="cardsProfesores">
+            <div class="col-6" id="cardsTeachers">
                 
-                <!--Template profesor card-->
+                <!--Template teacher card-->
 
             </div>
 
         </section>
     </div>
 
-    <template id="templateEstudiante">
+    <template id="templateStudent">
         <article class="card mb-2">
             <div class="card-body">
                 <h5>
-                    <span class="text-primary">Nombre</span>
-                    <span class="badge bg-success">Aprovado</span>
+                    <span class="text-primary">Name</span>
+                    <span class="badge bg-success">Passed</span>
                 </h5>
-                <h6>Estudiante</h6>
-                <p class="lead">edad</p>
+                <h6>Student</h6>
+                <p class="lead">age</p>
 
-                <button class="btn btn-success">Aprovar</button>
-                <button class="btn btn-danger">Reprobar</button>
+                <button class="btn btn-success">Pass</button>
+                <button class="btn btn-danger">Fail</button>
             </div>
         </article>
     </template>
 
-    <template id="templateProfesor">
+    <template id="templateTeacher">
         <article class="card mb-2 bg-dark text-white">
             <div class="card-body">
-                <h5>Nombre</h5>
-                <h6>Profesor</h6>
-                <p class="lead">edad</p>
+                <h5>Name</h5>
+                <h6>Teacher</h6>
+                <p class="lead">age</p>
             </div>
         </article>
     </template>
