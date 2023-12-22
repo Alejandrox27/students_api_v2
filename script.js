@@ -7,6 +7,29 @@ const cardsTeachers = document.getElementById("cardsTeachers");
 const students = [];
 const teachers = [];
 
+document.addEventListener("click", e => {
+    if (e.target.dataset.name){
+        if(e.target.matches(".btn-success")){
+            students.map(item => {
+                if(item.name === e.target.dataset.name){
+                    item.setStatus = true;
+                }
+                return item;
+            });
+            Person.showPersonUI(students, "Student")
+        }
+        if(e.target.matches(".btn-danger")){
+            students.map(item => {
+                if(item.name === e.target.dataset.name){
+                    item.setStatus = false;
+                }
+                return item;
+            });
+            Person.showPersonUI(students, "Student")
+        }
+    }
+});
+
 form.addEventListener("submit", (e) => {
     e.preventDefault();
 
@@ -46,6 +69,17 @@ class Person{
 
             cardsStudents.appendChild(fragment);
         }
+
+        if (tipe === "Teacher"){
+            cardsTeachers.textContent = "";
+            const fragment = document.createDocumentFragment();
+
+            persons.forEach(item => {
+                fragment.appendChild(item.addNewTeacher())
+            })
+
+            cardsTeachers.appendChild(fragment)
+        }
     }
 }
 
@@ -64,6 +98,22 @@ class Student extends Person {
     addNewStudent(){
         const clone = templateStudent.firstElementChild.cloneNode(true);
         clone.querySelector("h5 .text-primary").textContent = this.name;
+        clone.querySelector("h6").textContent = this.getStudent;
+        clone.querySelector(".lead").textContent = this.age;
+
+        if(this.#status){
+            clone.querySelector(".badge").className = "badge bg-success";
+            clone.querySelector(".btn-success").disabled = true;
+            clone.querySelector(".btn-danger").disabled = false;
+        }else{
+            clone.querySelector(".badge").className = "badge bg-danger";
+            clone.querySelector(".btn-danger").disabled = true;
+            clone.querySelector(".btn-success").disabled = false;
+        }
+        clone.querySelector(".badge").textContent = this.#status ? "Passed": "Failed";
+
+        clone.querySelector(".btn-success").dataset.name = this.name;
+        clone.querySelector(".btn-danger").dataset.name = this.name;
 
         return clone;
     }
